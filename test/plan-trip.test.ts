@@ -111,6 +111,34 @@ describe('plan_trip', () => {
 
         expect(searchPlans).toHaveBeenCalledWith(expect.objectContaining({ countries: ['JP', 'KR'], days: 10, limit: 50 }));
     });
+
+    it('says plainly when no plans exist for this trip at all', async () => {
+        const mcp = await connect({
+            searchPlans: vi.fn(async () => ({ plans: [], unmatched: [] }))
+        });
+
+        const result = await mcp.callTool({ name: 'plan_trip', arguments: { countries: ['JP', 'KR'] } });
+
+        expect(JSON.stringify(result.content)).toContain('No plans are available for this trip.');
+        expect((result.structuredContent as { recommendation: string }).recommendation).toBe('none');
+    });
+
+    it('does not fabricate a $0.00 total when no local plan exists for any country', async () => {
+        const mcp = await connect({
+            searchPlans: vi.fn(async () => ({
+                plans: [
+                    plan({ id: 10, scope: 'regional', group_id: 5, name: 'Asia 10GB', price_cents: 2000, covers_requested: ['JP', 'KR'], covers_all_requested: true })
+                ],
+                unmatched: []
+            }))
+        });
+
+        const result = await mcp.callTool({ name: 'plan_trip', arguments: { countries: ['JP', 'KR'] } });
+        const text = JSON.stringify(result.content);
+
+        expect(text).toContain('Option 2 - no local plans exist for any of these countries.');
+        expect(text).not.toContain('$0.00');
+    });
 });
 
 describe('get_plan_coverage', () => {

@@ -54,11 +54,15 @@ export function registerPlanTrip(server: McpServer, client: CheapereSIMClient): 
                     lines.push('Option 1 - no single plan covers every country on this trip.');
                 }
 
-                lines.push(
-                    '',
-                    `Option 2 - one local plan per country, ${formatPrice(comparison.localTotalCents ?? 0)} total:`,
-                    ...comparison.localStack.plans.map(formatPlanLine)
-                );
+                if (comparison.localStack.plans.length > 0) {
+                    lines.push(
+                        '',
+                        `Option 2 - one local plan per country, ${formatPrice(comparison.localTotalCents ?? 0)} total:`,
+                        ...comparison.localStack.plans.map(formatPlanLine)
+                    );
+                } else {
+                    lines.push('', 'Option 2 - no local plans exist for any of these countries.');
+                }
                 if (comparison.localStack.missing.length > 0) {
                     lines.push(`No local plan available for: ${comparison.localStack.missing.join(', ')}.`);
                 }
@@ -74,7 +78,9 @@ export function registerPlanTrip(server: McpServer, client: CheapereSIMClient): 
                     lines.push(
                         comparison.recommendation === 'single'
                             ? 'Recommended: option 1, since one eSIM is simpler to install than several.'
-                            : 'Recommended: option 2.'
+                            : comparison.localStack.missing.length > 0
+                              ? `Recommended: option 2, but it does not cover: ${comparison.localStack.missing.join(', ')}.`
+                              : 'Recommended: option 2.'
                     );
                 }
 
