@@ -45,17 +45,24 @@ export const CoverageResponseSchema = z.object({
     )
 });
 
+/**
+ * Everything below this line is an ordinary inline controller array, not the
+ * versioned plans/search contract, so these endpoints are free to change shape.
+ * Only the fields a tool actually reads or renders are required: demanding one
+ * nobody consumes would turn a harmless rename into a hard parse failure for
+ * every published install. Fields carried through untouched stay optional.
+ */
 export const DestinationSearchResponseSchema = z.object({
     destinations: z.array(
         z.object({
-            id: z.number(),
+            id: z.number().optional(),
             name: z.string(),
-            slug: z.string(),
+            slug: z.string().optional(),
             iso_code: z.string().nullable(),
-            region: z.string().nullable(),
-            flag_emoji: z.string().nullable(),
+            region: z.string().nullable().optional(),
+            flag_emoji: z.string().nullable().optional(),
             from_price: z.string().nullable(),
-            plan_label: z.string().nullable()
+            plan_label: z.string().nullable().optional()
         })
     )
 });
@@ -63,16 +70,16 @@ export const DestinationSearchResponseSchema = z.object({
 export const PopularResponseSchema = z.object({
     destinations: z.array(
         z.object({
-            id: z.number(),
+            id: z.number().optional(),
             name: z.string(),
-            slug: z.string(),
+            slug: z.string().optional(),
             iso_code: z.string().nullable(),
-            region: z.string().nullable(),
-            flag_emoji: z.string().nullable(),
-            is_popular: z.boolean(),
+            region: z.string().nullable().optional(),
+            flag_emoji: z.string().nullable().optional(),
+            is_popular: z.boolean().optional(),
             cheapest_price_cents: z.number().nullable(),
             package_count: z.number(),
-            cheapest_plan_label: z.string().nullable()
+            cheapest_plan_label: z.string().nullable().optional()
         })
     )
 });
@@ -97,20 +104,20 @@ export const OrdersResponseSchema = z.object({
             status: z.string(),
             package_name: z.string().nullable(),
             destination: z.string().nullable(),
-            destination_flag: z.string().nullable(),
-            destination_iso_code: z.string().nullable(),
-            delivered_at: z.string().nullable(),
+            destination_flag: z.string().nullable().optional(),
+            destination_iso_code: z.string().nullable().optional(),
+            delivered_at: z.string().nullable().optional(),
             expires_at: z.string().nullable(),
-            installed_at: z.string().nullable(),
-            activated_at: z.string().nullable(),
+            installed_at: z.string().nullable().optional(),
+            activated_at: z.string().nullable().optional(),
             smdp_status: z.string().nullable(),
             data_used_bytes: z.number().nullable(),
             data_total_bytes: z.number().nullable(),
-            last_synced_at: z.string().nullable(),
-            created_at: z.string()
+            last_synced_at: z.string().nullable().optional(),
+            created_at: z.string().optional()
         })
     ),
-    current_page: z.number(),
+    current_page: z.number().optional(),
     last_page: z.number(),
     total: z.number()
 });
@@ -120,8 +127,8 @@ export const UsageResponseSchema = z.object({
     message: z.string().optional(),
     usage: z
         .object({
-            data_used_mb: z.number().nullable(),
-            data_remaining_mb: z.number().nullable(),
+            data_used_mb: z.number().nullable().optional(),
+            data_remaining_mb: z.number().nullable().optional(),
             data_used_formatted: z.string().nullable(),
             data_remaining_formatted: z.string().nullable(),
             is_active: z.boolean().nullable(),
