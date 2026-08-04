@@ -5,6 +5,8 @@ import { registerListPlans } from './tools/list-plans.js';
 import { registerListPopularDestinations } from './tools/list-popular-destinations.js';
 import { registerPlanTrip } from './tools/plan-trip.js';
 import { registerGetPlanCoverage } from './tools/get-plan-coverage.js';
+import { registerListMyEsims } from './tools/list-my-esims.js';
+import { registerGetEsimUsage } from './tools/get-esim-usage.js';
 
 export const SERVER_NAME = 'esim-mcp';
 export const SERVER_VERSION = '0.1.0';
@@ -29,7 +31,8 @@ export function buildServer(client: CheapereSIMClient, options: { hasToken?: boo
     registerGetPlanCoverage(server, client);
 
     if (options.hasToken) {
-        // Account tools are registered in Task 5.
+        registerListMyEsims(server, client);
+        registerGetEsimUsage(server, client);
     }
 
     return server;
