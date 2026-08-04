@@ -33,10 +33,17 @@ export function compareTrip(plans: Plan[], countries: string[]): TripComparison 
 
     const singlePlan = cheapest(plans.filter(plan => wanted.every(country => covers(plan, country))));
 
+    // Option two is a stack of *local* plans, one per country. Restricting the
+    // search to scope === 'local' matters: a local plan covers exactly one
+    // country, so the stack can never double-buy coverage a regional plan
+    // already provides. A regional plan that covers everything is already
+    // option one (singlePlan) - it never belongs in the local stack.
+    const localPlans = plans.filter(plan => plan.scope === 'local');
+
     const perCountry: Plan[] = [];
     const missing: string[] = [];
     for (const country of wanted) {
-        const best = cheapest(plans.filter(plan => covers(plan, country)));
+        const best = cheapest(localPlans.filter(plan => covers(plan, country)));
         if (best === null) {
             missing.push(country);
         } else if (!perCountry.some(chosen => chosen.id === best.id)) {
@@ -44,12 +51,15 @@ export function compareTrip(plans: Plan[], countries: string[]): TripComparison 
         }
     }
 
-    const localStack = perCountry.length > 0 ? { plans: perCountry, missing } : null;
+    // Always report the stack, even when it is empty: the missing list is the
+    // useful part when no requested country has a local plan at all.
+    const localStack = { plans: perCountry, missing };
 
     const singleTotalCents = singlePlan?.price_cents ?? null;
-    const localTotalCents = localStack
-        ? localStack.plans.reduce((total, plan) => total + plan.price_cents, 0)
-        : null;
+    const localTotalCents =
+        localStack.plans.length > 0
+            ? localStack.plans.reduce((total, plan) => total + plan.price_cents, 0)
+            : null;
 
     let recommendation: TripComparison['recommendation'] = 'none';
     if (singleTotalCents !== null && localTotalCents !== null) {

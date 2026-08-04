@@ -1,6 +1,13 @@
 import type { Plan } from './schemas.js';
 
-/** "Unlimited", "5 GB", "1.5 GB", or "500 MB". */
+/**
+ * "Unlimited", "5 GB", "1.5 GB", or "500 MB".
+ *
+ * Derives GB from `data_amount_mb`, not `plan.data_gb`. `data_gb` is a
+ * rounded display field on the server (`round(mb / 1024, 1)`), which would
+ * let a 5100 MB plan report as "5 GB" here. `data_amount_mb` is the precise
+ * source; do not swap it for `data_gb`.
+ */
 export function formatData(plan: Plan): string {
     if (plan.is_unlimited) {
         return 'Unlimited';

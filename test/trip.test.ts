@@ -82,7 +82,22 @@ describe('compareTrip', () => {
 
         expect(result.recommendation).toBe('none');
         expect(result.singlePlan).toBeNull();
-        expect(result.localStack).toBeNull();
+        expect(result.localStack?.plans).toEqual([]);
+        expect(result.localStack?.missing).toEqual(['JP']);
+    });
+
+    it('never lets the local stack double-buy coverage a regional plan already provides', () => {
+        const regional = plan({ id: 10, scope: 'regional', group_id: 5, price_cents: 250, covers_requested: ['JP', 'KR'], covers_all_requested: true });
+        const krOnly = plan({ id: 2, price_cents: 200, covers_requested: ['KR'] });
+
+        const result = compareTrip([regional, krOnly], ['JP', 'KR']);
+
+        expect(result.localStack?.plans.map(p => p.id)).not.toContain(10);
+        expect(result.localStack?.plans.map(p => p.id)).toEqual([2]);
+        expect(result.localStack?.missing).toEqual(['JP']);
+        expect(result.localTotalCents).toBe(200);
+        expect(result.singlePlan?.id).toBe(10);
+        expect(result.singleTotalCents).toBe(250);
     });
 
     it('prefers the single plan on an exact tie, since one eSIM beats two', () => {
