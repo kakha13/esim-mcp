@@ -101,6 +101,7 @@ export const OrdersResponseSchema = z.object({
             destination_iso_code: z.string().nullable(),
             delivered_at: z.string().nullable(),
             expires_at: z.string().nullable(),
+            installed_at: z.string().nullable(),
             activated_at: z.string().nullable(),
             smdp_status: z.string().nullable(),
             data_used_bytes: z.number().nullable(),
@@ -133,5 +134,7 @@ export const UsageResponseSchema = z.object({
 export type Plan = z.infer<typeof PlanSchema>;
 export type PlanSearchResponse = z.infer<typeof PlanSearchResponseSchema>;
 export type Coverage = z.infer<typeof CoverageResponseSchema>;
+export type DestinationSearchResponse = z.infer<typeof DestinationSearchResponseSchema>;
+export type PopularResponse = z.infer<typeof PopularResponseSchema>;
 export type OrdersResponse = z.infer<typeof OrdersResponseSchema>;
 export type UsageResponse = z.infer<typeof UsageResponseSchema>;

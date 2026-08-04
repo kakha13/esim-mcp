@@ -126,6 +126,16 @@ describe('CheapereSIMClient', () => {
         expect((error as ApiError).kind).toBe('timeout');
     });
 
+    it('reports a plain fetch rejection as a network error', async () => {
+        const fetchMock = vi.fn(async () => {
+            throw new Error('ECONNREFUSED');
+        });
+        const error = await clientWith(fetchMock as unknown as typeof fetch)
+            .searchPlans({ countries: ['JP'] })
+            .catch((e: unknown) => e);
+        expect((error as ApiError).kind).toBe('network');
+    });
+
     it('sends the bearer token on account calls and never on public ones', async () => {
         const seen: Array<Record<string, string>> = [];
         const fetchMock = vi.fn(async (_url: string | URL, init?: RequestInit) => {

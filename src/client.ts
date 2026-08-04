@@ -7,8 +7,10 @@ import {
     UsageResponseSchema,
     ValidationErrorSchema,
     type Coverage,
+    type DestinationSearchResponse,
     type OrdersResponse,
     type PlanSearchResponse,
+    type PopularResponse,
     type UsageResponse
 } from './schemas.js';
 import type { Config } from './config.js';
@@ -75,11 +77,11 @@ export class CheapereSIMClient {
         return this.get(`/api/v1/plans/${groupId}/coverage`, CoverageResponseSchema);
     }
 
-    searchDestinations(query: string) {
+    searchDestinations(query: string): Promise<DestinationSearchResponse> {
         return this.get(`/api/v1/search?q=${encodeURIComponent(query)}`, DestinationSearchResponseSchema);
     }
 
-    getPopular() {
+    getPopular(): Promise<PopularResponse> {
         return this.get('/api/v1/popular', PopularResponseSchema);
     }
 
