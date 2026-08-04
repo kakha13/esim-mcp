@@ -1,0 +1,11 @@
+{
+    "status": 422,
+    "body": {
+        "message": "The countries field may not list more than 10 countries.",
+        "errors": {
+            "countries": [
+                "The countries field may not list more than 10 countries."
+            ]
+        }
+    }
+}

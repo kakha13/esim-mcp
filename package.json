@@ -1,0 +1,26 @@
+{
+  "name": "esim-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for travel eSIM plan discovery. Compare regional and local eSIM plans across countries.",
+  "type": "module",
+  "bin": { "esim-mcp": "dist/stdio.js" },
+  "main": "dist/server.js",
+  "files": ["dist"],
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "keywords": ["mcp", "model-context-protocol", "esim", "travel", "claude"],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.2",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
+  }
+}

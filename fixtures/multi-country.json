@@ -1,0 +1,50 @@
+{
+    "status": 200,
+    "body": {
+        "plans": [
+            {
+                "id": 4471,
+                "group_id": null,
+                "name": "Japan 100MB 7Days",
+                "scope": "local",
+                "data_amount_mb": 100,
+                "data_gb": 0.1,
+                "is_unlimited": false,
+                "duration_days": 7,
+                "price_cents": 106,
+                "price_formatted": "$1.06",
+                "currency": "USD",
+                "price_per_gb_cents": 1085,
+                "provider": "eSIM Access",
+                "destination_count": 1,
+                "covers_requested": [
+                    "JP"
+                ],
+                "covers_all_requested": false,
+                "buy_url": "http://localhost/esim/japan?package=4471&utm_source=mcp&utm_medium=ai&utm_campaign=esim-mcp"
+            },
+            {
+                "id": 4479,
+                "group_id": null,
+                "name": "South Korea 100MB 7Days",
+                "scope": "local",
+                "data_amount_mb": 100,
+                "data_gb": 0.1,
+                "is_unlimited": false,
+                "duration_days": 7,
+                "price_cents": 106,
+                "price_formatted": "$1.06",
+                "currency": "USD",
+                "price_per_gb_cents": 1085,
+                "provider": "eSIM Access",
+                "destination_count": 1,
+                "covers_requested": [
+                    "KR"
+                ],
+                "covers_all_requested": false,
+                "buy_url": "http://localhost/esim/south-korea?package=4479&utm_source=mcp&utm_medium=ai&utm_campaign=esim-mcp"
+            }
+        ],
+        "unmatched": []
+    }
+}

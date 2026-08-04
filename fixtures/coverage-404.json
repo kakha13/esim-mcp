@@ -1,0 +1,406 @@
+{
+    "status": 404,
+    "body": {
+        "message": "No query results for model [App\\Models\\PackageGroup] 999999",
+        "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException",
+        "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php",
+        "line": 670,
+        "trace": [
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php",
+                "line": 618,
+                "function": "prepareException",
+                "class": "Illuminate\\Foundation\\Exceptions\\Handler",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/nunomaduro/collision/src/Adapters/Laravel/ExceptionHandler.php",
+                "line": 55,
+                "function": "render",
+                "class": "Illuminate\\Foundation\\Exceptions\\Handler",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php",
+                "line": 51,
+                "function": "render",
+                "class": "NunoMaduro\\Collision\\Adapters\\Laravel\\ExceptionHandler",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 224,
+                "function": "handleException",
+                "class": "Illuminate\\Routing\\Pipeline",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 137,
+                "function": "{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                "line": 821,
+                "function": "then",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                "line": 800,
+                "function": "runRouteWithinStack",
+                "class": "Illuminate\\Routing\\Router",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                "line": 764,
+                "function": "runRoute",
+                "class": "Illuminate\\Routing\\Router",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                "line": 753,
+                "function": "dispatchToRoute",
+                "class": "Illuminate\\Routing\\Router",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+                "line": 200,
+                "function": "dispatch",
+                "class": "Illuminate\\Routing\\Router",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 180,
+                "function": "{closure:Illuminate\\Foundation\\Http\\Kernel::dispatchToRouter():197}",
+                "class": "Illuminate\\Foundation\\Http\\Kernel",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/app/Http/Middleware/SeoHeaders.php",
+                "line": 16,
+                "function": "{closure:Illuminate\\Pipeline\\Pipeline::prepareDestination():178}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 219,
+                "function": "handle",
+                "class": "App\\Http\\Middleware\\SeoHeaders",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/app/Http/Middleware/SetLocale.php",
+                "line": 64,
+                "function": "{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/app/Http/Middleware/SetLocale.php",
+                "line": 48,
+                "function": "boot",
+                "class": "App\\Http\\Middleware\\SetLocale",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 219,
+                "function": "handle",
+                "class": "App\\Http\\Middleware\\SetLocale",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+                "line": 21,
+                "function": "{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
+                "line": 31,
+                "function": "handle",
+                "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 219,
+                "function": "handle",
+                "class": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+                "line": 21,
+                "function": "{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
+                "line": 51,
+                "function": "handle",
+                "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 219,
+                "function": "handle",
+                "class": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php",
+                "line": 27,
+                "function": "{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 219,
+                "function": "handle",
+                "class": "Illuminate\\Http\\Middleware\\ValidatePostSize",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
+                "line": 109,
+                "function": "{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 219,
+                "function": "handle",
+                "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
+                "line": 74,
+                "function": "{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 219,
+                "function": "handle",
+                "class": "Illuminate\\Http\\Middleware\\HandleCors",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
+                "line": 58,
+                "function": "{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 219,
+                "function": "handle",
+                "class": "Illuminate\\Http\\Middleware\\TrustProxies",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php",
+                "line": 22,
+                "function": "{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 219,
+                "function": "handle",
+                "class": "Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php",
+                "line": 28,
+                "function": "{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 219,
+                "function": "handle",
+                "class": "Illuminate\\Http\\Middleware\\ValidatePathEncoding",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 137,
+                "function": "{closure:{closure:Illuminate\\Pipeline\\Pipeline::carry():194}:195}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+                "line": 175,
+                "function": "then",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+                "line": 144,
+                "function": "sendRequestThroughRouter",
+                "class": "Illuminate\\Foundation\\Http\\Kernel",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
+                "line": 1207,
+                "function": "handle",
+                "class": "Illuminate\\Foundation\\Http\\Kernel",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/psy/psysh/src/ExecutionClosure.php(41) : eval()'d code",
+                "line": 3,
+                "function": "handle",
+                "class": "Illuminate\\Foundation\\Application",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/psy/psysh/src/ExecutionClosure.php",
+                "line": 41,
+                "function": "eval"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/psy/psysh/src/ExecutionClosure.php",
+                "line": 90,
+                "function": "{closure:Psy\\ExecutionClosure::__construct():28}"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/psy/psysh/src/Shell.php",
+                "line": 2182,
+                "function": "execute",
+                "class": "Psy\\ExecutionClosure",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/tinker/src/Console/TinkerCommand.php",
+                "line": 78,
+                "function": "execute",
+                "class": "Psy\\Shell",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
+                "line": 36,
+                "function": "handle",
+                "class": "Laravel\\Tinker\\Console\\TinkerCommand",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Container/Util.php",
+                "line": 43,
+                "function": "{closure:Illuminate\\Container\\BoundMethod::call():35}",
+                "class": "Illuminate\\Container\\BoundMethod",
+                "type": "::"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
+                "line": 96,
+                "function": "unwrapIfClosure",
+                "class": "Illuminate\\Container\\Util",
+                "type": "::"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
+                "line": 35,
+                "function": "callBoundMethod",
+                "class": "Illuminate\\Container\\BoundMethod",
+                "type": "::"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Container/Container.php",
+                "line": 799,
+                "function": "call",
+                "class": "Illuminate\\Container\\BoundMethod",
+                "type": "::"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Console/Command.php",
+                "line": 280,
+                "function": "call",
+                "class": "Illuminate\\Container\\Container",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/symfony/console/Command/Command.php",
+                "line": 291,
+                "function": "execute",
+                "class": "Illuminate\\Console\\Command",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Console/Command.php",
+                "line": 249,
+                "function": "run",
+                "class": "Symfony\\Component\\Console\\Command\\Command",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/symfony/console/Application.php",
+                "line": 1107,
+                "function": "run",
+                "class": "Illuminate\\Console\\Command",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/symfony/console/Application.php",
+                "line": 356,
+                "function": "doRunCommand",
+                "class": "Symfony\\Component\\Console\\Application",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/symfony/console/Application.php",
+                "line": 195,
+                "function": "doRun",
+                "class": "Symfony\\Component\\Console\\Application",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php",
+                "line": 198,
+                "function": "run",
+                "class": "Symfony\\Component\\Console\\Application",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
+                "line": 1235,
+                "function": "handle",
+                "class": "Illuminate\\Foundation\\Console\\Kernel",
+                "type": "->"
+            },
+            {
+                "file": "/Users/kakha13/Developer/CheapereSIM/artisan",
+                "line": 16,
+                "function": "handleCommand",
+                "class": "Illuminate\\Foundation\\Application",
+                "type": "->"
+            }
+        ]
+    }
+}

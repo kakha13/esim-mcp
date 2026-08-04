@@ -1,0 +1,11 @@
+{
+    "status": 422,
+    "body": {
+        "message": "The selected scope is invalid.",
+        "errors": {
+            "scope": [
+                "The selected scope is invalid."
+            ]
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "status": 422,
+    "body": {
+        "message": "The countries field is required.",
+        "errors": {
+            "countries": [
+                "The countries field is required."
+            ]
+        }
+    }
+}
