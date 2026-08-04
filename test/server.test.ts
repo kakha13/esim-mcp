@@ -17,7 +17,13 @@ describe('buildServer', () => {
         const mcp = await connect({});
         const names = (await mcp.listTools()).tools.map(t => t.name).sort();
 
-        expect(names).toEqual(['list_plans', 'list_popular_destinations', 'search_destinations']);
+        expect(names).toEqual([
+            'get_plan_coverage',
+            'list_plans',
+            'list_popular_destinations',
+            'plan_trip',
+            'search_destinations'
+        ]);
         expect(names).not.toContain('list_my_esims');
         expect(names).not.toContain('get_esim_usage');
     });

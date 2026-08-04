@@ -2,7 +2,7 @@ import type { Plan } from './schemas.js';
 
 export interface TripComparison {
     singlePlan: Plan | null;
-    localStack: { plans: Plan[]; missing: string[] } | null;
+    localStack: { plans: Plan[]; missing: string[] };
     recommendation: 'single' | 'local' | 'none';
     singleTotalCents: number | null;
     localTotalCents: number | null;
