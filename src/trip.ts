@@ -61,20 +61,24 @@ export function compareTrip(plans: Plan[], countries: string[]): TripComparison 
             ? localStack.plans.reduce((total, plan) => total + plan.price_cents, 0)
             : null;
 
+    // An incomplete local stack does not cover the trip, so it cannot win on
+    // price against a plan that does. It only competes with singlePlan - and
+    // savingsCents only makes sense - when both options are complete.
+    const localComplete = missing.length === 0;
+
     let recommendation: TripComparison['recommendation'] = 'none';
-    if (singleTotalCents !== null && localTotalCents !== null) {
+    let savingsCents: number | null = null;
+    if (singleTotalCents !== null && localTotalCents !== null && localComplete) {
         // A tie goes to the single plan: one eSIM to install beats two.
         recommendation = singleTotalCents <= localTotalCents ? 'single' : 'local';
+        savingsCents = Math.abs(singleTotalCents - localTotalCents);
     } else if (singleTotalCents !== null) {
+        // Either there is no local stack, or it cannot cover the whole trip.
         recommendation = 'single';
     } else if (localTotalCents !== null) {
+        // No single plan exists; the (possibly incomplete) stack is all there is.
         recommendation = 'local';
     }
-
-    const savingsCents =
-        singleTotalCents !== null && localTotalCents !== null
-            ? Math.abs(singleTotalCents - localTotalCents)
-            : null;
 
     return { singlePlan, localStack, recommendation, singleTotalCents, localTotalCents, savingsCents };
 }

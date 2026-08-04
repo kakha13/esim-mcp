@@ -100,6 +100,26 @@ describe('compareTrip', () => {
         expect(result.singleTotalCents).toBe(250);
     });
 
+    it('never lets an incomplete local stack out-price a plan that covers everything', () => {
+        const regional = plan({ id: 10, scope: 'regional', group_id: 5, price_cents: 2000, covers_requested: ['JP', 'KR'], covers_all_requested: true });
+        const jpOnly = plan({ id: 1, price_cents: 500, covers_requested: ['JP'] });
+
+        const result = compareTrip([regional, jpOnly], ['JP', 'KR']);
+
+        expect(result.localStack?.missing).toEqual(['KR']);
+        expect(result.recommendation).toBe('single');
+        expect(result.savingsCents).toBeNull();
+    });
+
+    it('still recommends the incomplete local stack when no single plan covers everything', () => {
+        const jpOnly = plan({ id: 1, price_cents: 500, covers_requested: ['JP'] });
+
+        const result = compareTrip([jpOnly], ['JP', 'KR']);
+
+        expect(result.recommendation).toBe('local');
+        expect(result.localStack?.missing).toEqual(['KR']);
+    });
+
     it('prefers the single plan on an exact tie, since one eSIM beats two', () => {
         const regional = plan({ id: 10, scope: 'regional', group_id: 5, price_cents: 1600, covers_requested: ['JP', 'KR'], covers_all_requested: true });
         const result = compareTrip(
