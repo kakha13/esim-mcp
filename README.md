@@ -1,6 +1,10 @@
 # esim-mcp
 
+[![npm version](https://img.shields.io/npm/v/esim-mcp)](https://www.npmjs.com/package/esim-mcp)
+[![npm downloads](https://img.shields.io/npm/dm/esim-mcp)](https://www.npmjs.com/package/esim-mcp)
 [![CI](https://github.com/kakha13/esim-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/kakha13/esim-mcp/actions/workflows/ci.yml)
+[![MCP Registry](https://img.shields.io/badge/MCP%20Registry-io.github.kakha13%2Fesim--mcp-blue)](https://registry.modelcontextprotocol.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 **An MCP server for travel eSIM plans.** It lets Claude, Cursor, and any other Model Context Protocol client search travel eSIM data plans by country, compare prices, and work out the cheapest way to stay connected across a multi-country trip.
 
