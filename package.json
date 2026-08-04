@@ -12,6 +12,7 @@
   "homepage": "https://github.com/kakha13/esim-mcp#readme",
   "scripts": {
     "build": "tsc",
+    "typecheck": "tsc -p tsconfig.test.json",
     "test": "vitest run",
     "prepublishOnly": "npm run build && npm test"
   },

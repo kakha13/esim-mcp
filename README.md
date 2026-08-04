@@ -37,6 +37,8 @@ Recommended: option 2.
 
 This transcript came from a captured API response with only small local plans available, so no single regional plan could win the comparison. Larger destinations typically also have a regional or global plan that `plan_trip` weighs against the local stack.
 
+It was captured against a development environment, which is why the buy links read `http://localhost`. The server prints each `buy_url` exactly as the API returns it, so an installed copy running against the default `CHEAPERESIM_API_BASE` prints `https://cheaperesim.com` links.
+
 ## Tools
 
 | Tool | Description | Requires token |
