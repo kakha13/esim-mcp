@@ -1,11 +1,5 @@
+import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js';
 import { ApiError } from '../client.js';
-
-export interface ToolResult {
-    [key: string]: unknown;
-    content: Array<{ type: 'text'; text: string }>;
-    structuredContent?: Record<string, unknown>;
-    isError?: boolean;
-}
 
 /**
  * Turn anything thrown inside a tool into a result the model can read.
@@ -14,7 +8,7 @@ export interface ToolResult {
  * handler funnels through here. An unexpected error never surfaces its
  * own message, which could contain internals.
  */
-export function toolError(error: unknown): ToolResult {
+export function toolError(error: unknown): CallToolResult {
     const text =
         error instanceof ApiError
             ? error.userMessage
@@ -24,6 +18,6 @@ export function toolError(error: unknown): ToolResult {
 }
 
 /** Text plus structured content, the shape every successful tool returns. */
-export function toolSuccess(text: string, structuredContent: Record<string, unknown>): ToolResult {
+export function toolSuccess(text: string, structuredContent: Record<string, unknown>): CallToolResult {
     return { content: [{ type: 'text', text }], structuredContent };
 }

@@ -82,5 +82,6 @@ describe('buildServer', () => {
 
         expect(result.isError).toBe(true);
         expect(JSON.stringify(result.content)).not.toContain('boom');
+        expect(JSON.stringify(result.content)).toContain('Something went wrong talking to CheapereSIM');
     });
 });

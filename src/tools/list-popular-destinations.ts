@@ -7,7 +7,8 @@ export function registerListPopularDestinations(server: McpServer, client: Cheap
     server.registerTool(
         'list_popular_destinations',
         {
-            description: 'List the destinations travellers buy eSIMs for most often, with a starting price for each.',
+            description:
+                'List the destinations travellers buy eSIMs for most often, with a starting price for each. Use this only when the user has not named a destination and wants ideas. If they already named one country use list_plans, and if they named several use plan_trip.',
             inputSchema: {}
         },
         async () => {
