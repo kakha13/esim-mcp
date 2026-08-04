@@ -40,23 +40,26 @@ No API key, no account, and no configuration are required to search destinations
 
 ## Example: planning a multi-country trip
 
-Asking `plan_trip` to cover Japan and South Korea:
+Asking `plan_trip` for three weeks across Japan, South Korea and Taiwan, with at least 10GB:
 
 ```
-Option 1 - no single plan covers every country on this trip.
+Option 1 - one plan covering everything, $34.58:
+Asia (12 areas) 10GB 30Days: 10 GB for 30 days - $34.58 - covers 12 countries
+  https://cheaperesim.com/multi-country-esim?package=2488&utm_source=mcp&utm_medium=ai&utm_campaign=esim-mcp
 
-Option 2 - one local plan per country, $2.12 total:
-Japan 100MB 7Days: 100 MB for 7 days - $1.06
-  http://localhost/esim/japan?package=4471&utm_source=mcp&utm_medium=ai&utm_campaign=esim-mcp
-South Korea 100MB 7Days: 100 MB for 7 days - $1.06
-  http://localhost/esim/south-korea?package=4479&utm_source=mcp&utm_medium=ai&utm_campaign=esim-mcp
+Option 2 - one local plan per country, $17.52 total:
+Japan 10GB 30Days: 10 GB for 30 days - $8.76
+  https://cheaperesim.com/esim/japan?package=339&utm_source=mcp&utm_medium=ai&utm_campaign=esim-mcp
+South Korea 10GB 30Days: 10 GB for 30 days - $8.76
+  https://cheaperesim.com/esim/south-korea?package=345&utm_source=mcp&utm_medium=ai&utm_campaign=esim-mcp
+No local plan available for: TW.
 
-Recommended: option 2.
+Recommended: option 1, since option 2 does not cover: TW.
 ```
 
-This transcript came from a captured API response with only small local plans available, so no single regional plan could win the comparison. Larger destinations typically also have a regional or global plan that `plan_trip` weighs against the local stack.
+That is real output against live pricing, not an illustration. It is also the case worth understanding: buying local is half the price, and it is still the wrong answer, because Taiwan is sold only inside regional plans. A price comparison that stopped at the cheaper number would leave you without service for a third of the trip.
 
-It was captured against a development environment, which is why the buy links read `http://localhost`. The server prints each `buy_url` exactly as the API returns it, so an installed copy running against the default `CHEAPERESIM_API_BASE` prints `https://cheaperesim.com` links.
+The server prints each `buy_url` exactly as the API returns it, so the links above are the ones you would get.
 
 ## Tools
 
