@@ -82,12 +82,12 @@ describe('plan_trip', () => {
 
     it('surfaces countries CheapereSIM does not sell', async () => {
         const mcp = await connect({
-            searchPlans: vi.fn(async () => ({ plans: [plan({ id: 1, covers_requested: ['JP'] })], unmatched: ['Narnia'] }))
+            searchPlans: vi.fn(async () => ({ plans: [plan({ id: 1, covers_requested: ['JP'] })], unmatched: ['XK'] }))
         });
 
-        const result = await mcp.callTool({ name: 'plan_trip', arguments: { countries: ['JP', 'Narnia'] } });
+        const result = await mcp.callTool({ name: 'plan_trip', arguments: { countries: ['JP', 'XK'] } });
 
-        expect(JSON.stringify(result.content)).toContain('Narnia');
+        expect(JSON.stringify(result.content)).toContain('XK');
     });
 
     it('rejects an empty country list at the schema boundary', async () => {
@@ -121,6 +121,93 @@ describe('plan_trip', () => {
 
         expect(JSON.stringify(result.content)).toContain('No plans are available for this trip.');
         expect((result.structuredContent as { recommendation: string }).recommendation).toBe('none');
+    });
+
+    it('rejects a country name at the schema boundary rather than matching nothing later', async () => {
+        const searchPlans = vi.fn();
+        const mcp = await connect({ searchPlans });
+
+        // compareTrip matches against covers_requested, which is always ISO
+        // codes. A slug would fetch real plans and then match none of them,
+        // printing "No plans are available for this trip" for a trip that has
+        // plenty. Failing at the schema is the honest answer.
+        const result = await mcp.callTool({ name: 'plan_trip', arguments: { countries: ['japan'] } });
+
+        expect(result.isError).toBe(true);
+        expect(searchPlans).not.toHaveBeenCalled();
+    });
+
+    it('reports a missing country as a truncation caveat when the result set is full', async () => {
+        // The API pools every requested country into one price-sorted list and
+        // truncates at 50. A cheap high-inventory country can fill all 50 slots,
+        // so absence from the candidate list is not absence from the catalogue.
+        const japan = Array.from({ length: 50 }, (_, i) =>
+            plan({ id: i + 1, name: `Japan plan ${i + 1}`, price_cents: 106 + i, covers_requested: ['JP'] })
+        );
+        const mcp = await connect({ searchPlans: vi.fn(async () => ({ plans: japan, unmatched: [] })) });
+
+        const result = await mcp.callTool({ name: 'plan_trip', arguments: { countries: ['JP', 'VU'] } });
+        const text = JSON.stringify(result.content);
+
+        expect(text).toContain('within the top 50 results');
+        expect(text).toContain('may be incomplete');
+        expect(text).toContain('list_plans');
+        expect(text).not.toContain('No local plan available for');
+        expect((result.structuredContent as { results_truncated: boolean }).results_truncated).toBe(true);
+    });
+
+    it('still states a missing country plainly when the result set was not truncated', async () => {
+        const mcp = await connect({
+            searchPlans: vi.fn(async () => ({
+                plans: [plan({ id: 1, price_cents: 800, covers_requested: ['JP'] })],
+                unmatched: []
+            }))
+        });
+
+        const result = await mcp.callTool({ name: 'plan_trip', arguments: { countries: ['JP', 'VU'] } });
+        const text = JSON.stringify(result.content);
+
+        expect(text).toContain('No local plan available for: VU.');
+        expect(text).not.toContain('within the top 50 results');
+        expect((result.structuredContent as { results_truncated: boolean }).results_truncated).toBe(false);
+    });
+
+    it('recommends the single plan because the local stack has a hole, not because it is tidier', async () => {
+        const mcp = await connect({
+            searchPlans: vi.fn(async () => ({
+                plans: [
+                    plan({ id: 10, scope: 'regional', group_id: 5, name: 'Asia 10GB', price_cents: 2000, covers_requested: ['JP', 'KR'], covers_all_requested: true }),
+                    plan({ id: 1, name: 'Japan 5GB', price_cents: 500, covers_requested: ['JP'] })
+                ],
+                unmatched: []
+            }))
+        });
+
+        const result = await mcp.callTool({ name: 'plan_trip', arguments: { countries: ['JP', 'KR'] } });
+        const text = JSON.stringify(result.content);
+
+        // "$5 vs $20, recommended $20 because it is simpler" invites a model to
+        // override the recommendation. The real reason is that option 2 leaves
+        // the traveller with no service in Korea.
+        expect(text).toContain('Recommended: option 1, since option 2 does not cover: KR.');
+        expect(text).not.toContain('simpler to install');
+    });
+
+    it('keeps the simpler-to-install reason for a genuine tie', async () => {
+        const mcp = await connect({
+            searchPlans: vi.fn(async () => ({
+                plans: [
+                    plan({ id: 10, scope: 'regional', group_id: 5, name: 'Asia 10GB', price_cents: 1600, covers_requested: ['JP', 'KR'], covers_all_requested: true }),
+                    plan({ id: 1, name: 'Japan 5GB', price_cents: 800, covers_requested: ['JP'] }),
+                    plan({ id: 2, name: 'Korea 5GB', price_cents: 800, covers_requested: ['KR'] })
+                ],
+                unmatched: []
+            }))
+        });
+
+        const result = await mcp.callTool({ name: 'plan_trip', arguments: { countries: ['JP', 'KR'] } });
+
+        expect(JSON.stringify(result.content)).toContain('simpler to install');
     });
 
     it('does not fabricate a $0.00 total when no local plan exists for any country', async () => {
