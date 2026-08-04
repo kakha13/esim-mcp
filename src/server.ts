@@ -9,7 +9,7 @@ import { registerListMyEsims } from './tools/list-my-esims.js';
 import { registerGetEsimUsage } from './tools/get-esim-usage.js';
 
 export const SERVER_NAME = 'esim-mcp';
-export const SERVER_VERSION = '0.1.0';
+export const SERVER_VERSION = '0.1.1';
 
 /**
  * Build the server with every tool registered.

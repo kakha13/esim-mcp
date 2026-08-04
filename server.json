@@ -1,0 +1,44 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.kakha13/esim-mcp",
+  "description": "Compare travel eSIM plans by country, and regional vs local pricing for multi-country trips.",
+  "repository": {
+    "url": "https://github.com/kakha13/esim-mcp",
+    "source": "github"
+  },
+  "version": "0.1.1",
+  "websiteUrl": "https://cheaperesim.com/esim-mcp",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "esim-mcp",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "CHEAPERESIM_API_TOKEN",
+          "description": "Optional read-only CheapereSIM API token. Without it the five plan-search tools work normally. With it, two extra tools can list the eSIMs on your account and their remaining data. Create one at https://cheaperesim.com/dashboard/api-tokens",
+          "isRequired": false,
+          "isSecret": true,
+          "format": "string"
+        },
+        {
+          "name": "CHEAPERESIM_API_BASE",
+          "description": "Override the API base URL. Defaults to https://cheaperesim.com and only needs changing for local development.",
+          "isRequired": false,
+          "isSecret": false,
+          "format": "string"
+        },
+        {
+          "name": "CHEAPERESIM_TIMEOUT_MS",
+          "description": "Per-request timeout in milliseconds. Defaults to 10000.",
+          "isRequired": false,
+          "isSecret": false,
+          "format": "string"
+        }
+      ]
+    }
+  ]
+}

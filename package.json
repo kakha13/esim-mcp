@@ -1,14 +1,26 @@
 {
   "name": "esim-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "mcpName": "io.github.kakha13/esim-mcp",
   "description": "MCP server for travel eSIM plan discovery. Compare regional and local eSIM plans across countries.",
   "type": "module",
-  "bin": { "esim-mcp": "dist/stdio.js" },
+  "bin": {
+    "esim-mcp": "dist/stdio.js"
+  },
   "main": "dist/server.js",
-  "files": ["dist"],
-  "engines": { "node": ">=20" },
-  "repository": { "type": "git", "url": "git+https://github.com/kakha13/esim-mcp.git" },
-  "bugs": { "url": "https://github.com/kakha13/esim-mcp/issues" },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kakha13/esim-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kakha13/esim-mcp/issues"
+  },
   "homepage": "https://github.com/kakha13/esim-mcp#readme",
   "scripts": {
     "build": "tsc",
@@ -16,7 +28,13 @@
     "test": "vitest run",
     "prepublishOnly": "npm run build && npm test"
   },
-  "keywords": ["mcp", "model-context-protocol", "esim", "travel", "claude"],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "esim",
+    "travel",
+    "claude"
+  ],
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.0",
